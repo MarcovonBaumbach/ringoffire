@@ -1,7 +1,7 @@
 .player {
     display: flex;
     align-items: center;
-    background-color: orange;
+    background-color: gainsboro;
     width: 300px;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
@@ -12,10 +12,14 @@
     }
 
     img {
-        height: 80px;
+        height: 50px;
         padding: 10px;
         width: auto;
         object-fit: cover;
         border-radius: 100%;
     }
+}
+
+.player-active {
+    background-color: orange;
 }
