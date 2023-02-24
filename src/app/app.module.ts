@@ -20,6 +20,8 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { PlayerMissingDialogComponent } from './player-missing-dialog/player-missing-dialog.component';
+import { PlayerMobileComponent } from './player-mobile/player-mobile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     GameComponent,
     PlayerComponent,
     DialogAddPlayerComponent,
-    GameInfoComponent
+    GameInfoComponent,
+    PlayerMissingDialogComponent,
+    PlayerMobileComponent
   ],
   imports: [
     BrowserModule,

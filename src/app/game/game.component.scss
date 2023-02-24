@@ -15,6 +15,10 @@
         position: absolute;
         width: 120px;
         height: auto;
+
+        @media (max-width: 960px) {
+            width: 80px;
+        }
     }
 }
 
@@ -49,15 +53,31 @@
     }
 }
 
+.scrollable {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 3;
+    overflow-x: scroll;
+    display: flex;
+    gap: 10px;
+}
+
 .player-position {
     position: absolute;
     right: 0;
+    z-index: 3;
 }
 
 .btn-add {
     position: absolute;
     right: 32px;
     bottom: 32px;
+
+    @media (max-width: 960px) {
+        right: 16px;
+        bottom: 16px;
+    }
 }
 
 .pin-bottom {
@@ -65,4 +85,45 @@
     bottom: 32px;
     left: 120px;
     right: 120px;
+
+    @media (max-width: 960px) {
+        bottom: 0px;
+        left: 0px;
+        right: 80px;
+    }
+}
+
+@media (max-width: 960px) {
+    .mobile-hidden {
+        display: none;
+    }
+
+    .pick-card {
+        animation: pick-card-anim 1.2s ease-in-out;
+        transform: scale(1.1) translateX(100px) translateY(-120px) rotate(-170deg);
+    }
+    
+    @keyframes pick-card-anim {
+        0% {
+            transform: scale(1);
+        }
+    
+        40% {
+            transform: scale(1.4);
+        }
+    
+        50% {
+            transform: scale(1.4);
+        }
+    
+        100% {
+            transform: scale(1.1) translateX(100px) translateY(-120px) rotate(-170deg);
+        }
+    }
+}
+
+@media (min-width: 960px) {
+    .desktop-hidden {
+        display: none;
+    }
 }

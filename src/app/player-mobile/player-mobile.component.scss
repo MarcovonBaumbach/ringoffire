@@ -1,15 +1,16 @@
 .player {
     display: flex;
+    flex-direction: column-reverse;
     align-items: center;
+    justify-content: center;
     background-color: gainsboro;
     opacity: 0.75;
-    width: 300px;
-    border-top-left-radius: 50px;
+    width: 90px;
     border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 
     span {
-        font-size: 24px;
-        margin-left: 16px;
+        font-size: 16px;
     }
 
     img {
