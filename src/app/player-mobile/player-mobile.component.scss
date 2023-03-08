@@ -11,6 +11,10 @@
 
     span {
         font-size: 16px;
+        max-width: 90px;       
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
     img {

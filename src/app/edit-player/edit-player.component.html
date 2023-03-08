@@ -1,0 +1,8 @@
+<div class="container">
+    <h1>Edit Player</h1>
+    <img *ngFor="let profile of allProfilePictures" [mat-dialog-close]="profile" src="assets/img/{{ profile }}.png">
+</div>
+<button mat-raised-button color="warn" [mat-dialog-close]="'DELETE'">Delete Player</button>
+<button mat-raised-button (click)="onNoClick()">Cancel</button>
+
+

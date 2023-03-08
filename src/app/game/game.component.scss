@@ -122,6 +122,31 @@
     }
 }
 
+app-player, app-player-mobile {
+    cursor: pointer;
+    &:hover {
+        filter: brightness(0.9);
+    }
+}
+
+.game-over {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    img {
+        width: 300px;
+        height: auto;
+    }
+}
+
+footer {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
 @media (min-width: 960px) {
     .desktop-hidden {
         display: none;

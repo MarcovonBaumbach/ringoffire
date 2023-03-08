@@ -1,18 +1,24 @@
-<app-player *ngFor="let player of game.players; let i = index;" 
+<app-player (click)="editPlayer(i)" *ngFor="let player of game.players; let i = index;" 
     [playerActive]="i == game.currentPlayer"
     [ngStyle]="{'top.px': 100 + (i * 90)}" 
     [name]="player" 
+    [image]="game.player_images[i]"
     class="player-position mobile-hidden">
 </app-player>
 
 <div class="scrollable desktop-hidden">
-<app-player-mobile *ngFor="let player of game.players; let i = index;" 
+<app-player-mobile (click)="editPlayer(i)" *ngFor="let player of game.players; let i = index;" 
     [playerActive]="i == game.currentPlayer"
-    [name]="player">
+    [name]="player"
+    [image]="game.player_images[i]">
 </app-player-mobile>
 </div>
 
-<div class="field">
+<div *ngIf="gameOver" class="game-over">
+    <img src="assets/img/game-over.png">
+</div>
+
+<div *ngIf="!gameOver" class="field">
     <div class="card-stack">
         <img *ngFor="let card of [0, 1, 2, 3]; let i = index;" [ngStyle]="{'right.px': i * 5}" src="assets/img/cards/card_cover.png">
         <img class="top-card" (click)="takeCard()" style="right: 20px" src="assets/img/cards/card_cover.png">
@@ -21,8 +27,12 @@
     </div>
 </div>
 
-<app-game-info [card]="game.currentCard" class="pin-bottom"></app-game-info>
+<app-game-info *ngIf="!gameOver" [card]="game.currentCard" class="pin-bottom"></app-game-info>
 
-<button mat-fab color="primary" (click)="openDialog()" class="btn-add">
+<button *ngIf="!gameOver" mat-fab color="primary" (click)="openDialog()" class="btn-add">
     <mat-icon>add</mat-icon>
 </button>
+
+<footer>
+    <a href="https://www.freepik.com/free-vector/profile-icons-pack-hand-drawn-style_18156023.htm#query=profile%20icon&position=7&from_view=keyword&track=ais">Image by pikisuperstar </a> on Freepik
+</footer>

@@ -6,6 +6,7 @@ import { Firestore, collectionData, addDoc, doc, setDoc, collection, getDoc, doc
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { PlayerMissingDialogComponent } from '../player-missing-dialog/player-missing-dialog.component';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class GameComponent implements OnInit {
   game: Game;
   game$: Observable<any>;
   gameId: any;
+  gameOver: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +39,7 @@ export class GameComponent implements OnInit {
         this.game.currentPlayer = game.currentPlayer;
         this.game.playedCards = game.playedCards;
         this.game.players = game.players;
+        this.game.player_images = game.player_images;
         this.game.stack = game.stack;
         this.game.pickCardAnimation = game.pickCardAnimation;
         this.game.currentCard = game.currentCard;
@@ -49,7 +52,10 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (!this.game.pickCardAnimation) {
+    if (this.game.stack.length == 0) {
+      this.gameOver = true;
+    }
+    if (!this.game.pickCardAnimation && this.game.stack.length > 0) {
       if (this.game.players.length > 0) {
         this.game.currentCard = this.game.stack.pop();
 
@@ -74,6 +80,7 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name) {
         this.game.players.push(name);
+        this.game.player_images.push('profile');
         this.saveGame();
       }
     });
@@ -82,5 +89,20 @@ export class GameComponent implements OnInit {
   saveGame() {
     //this.gameId.update(this.game.toJson());
     updateDoc(this.gameId, this.game.toJson());
+  }
+
+  editPlayer(id: number) {
+    const dialogRef = this.dialog.open(EditPlayerComponent);
+    dialogRef.afterClosed().subscribe((change: string) => {
+      if (change) {
+        if (change == 'DELETE') {
+          this.game.players.splice(id, 1);
+          this.game.player_images.splice(id, 1);
+        } else {
+          this.game.player_images[id] = change;
+        }
+        this.saveGame();
+      }
+    });
   }
 }

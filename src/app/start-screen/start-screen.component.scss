@@ -16,7 +16,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 100px;
+    bottom: 250px;
     display: flex;
     justify-content: center;
 
@@ -24,18 +24,41 @@
         width: 30vw;
         height: auto;
         object-fit: cover;
+        transition: all 75ms ease-in-out;
 
         &:hover {
             filter: brightness(1.2);
             cursor: pointer;
+            transform: scale(1.05);
+            transition: all 75ms ease-in-out;
         }
 
         @media (max-width: 1400px) {
             width: 50vw;
         }
 
-        @media (max-width: 960px) {
-            width: 70vw;
+        @media (max-width: 600px) {
+            width: 80vw;
         }
+    }
+
+    @media (max-width: 600px) {
+        bottom: 100px;
+    }
+}
+
+.display-mobile {
+    height: 100vh;
+}
+
+@media (max-width: 960px) {
+    .display-desktop {
+        display: none;
+    }
+}
+
+@media (min-width: 961px) {
+    .display-mobile {
+        display: none;
     }
 }
